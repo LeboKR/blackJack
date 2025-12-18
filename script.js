@@ -88,7 +88,7 @@ startGameBtn.addEventListener('click', function() {
                 <p>
                     You are out of the game!
                     <br>
-                    You lost ${(betAmount*0.25).toFixed(2)}.
+                    You lost $${(betAmount*0.25).toFixed(2)}
                 </p>
                 `
                 okayBtnEl.innerHTML = '<button>Try Again</button>'
@@ -105,7 +105,7 @@ startGameBtn.addEventListener('click', function() {
                 <p>
                 Congratulations! You've got Blackjack!
                 <br>
-                You won ${((betAmount * 1.5)-betAmount).toFixed(2)}
+                You won $${((betAmount * 1.5)-betAmount).toFixed(2)}
                 </p>
                 `
                 okayBtnEl.innerHTML = '<button>Continue playing</button>'
