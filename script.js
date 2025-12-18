@@ -3,13 +3,14 @@ const startGameBtn = document.getElementById('start-game');
 
 startGameBtn.addEventListener('click', function() {
     const playerName = document.getElementById('player-name').value;
-    const betAmount = document.getElementById('bet-amount').value;
+    let betAmount = document.getElementById('bet-amount').value;
     const okayBtnEl = document.getElementById('okayBtn');
 
     if (playerName && betAmount) {
         
         const gameAreaDiv = document.querySelector('#game-area');
-        gameAreaDiv.innerHTML = `
+        gameAreaDiv.innerHTML = 
+        `
         <h4 style= "font-weight: light;">
             Welcome ${playerName}!<br>
             Your bet amount is $${betAmount}.<br>
@@ -83,18 +84,35 @@ startGameBtn.addEventListener('click', function() {
             if (sum > 21)
             {
                 isAlive = false
-                gameContainer.innerHTML += `<p>You are out of the game!</p>`
-                okayBtnEl.innerHTML = '<button>Start New Game</button>'
+                gameContainer.innerHTML += `
+                <p>
+                    You are out of the game!
+                    <br>
+                    You lost ${(betAmount*0.25).toFixed(2)}.
+                </p>
+                `
+                okayBtnEl.innerHTML = '<button>Try Again</button>'
                 newCardBtnEl.innerHTML = ""
+                betAmount -= betAmount*0.25
+                betAmount = betAmount.toFixed(2)
                 
             }
 
             if (sum === 21)
             {
                 hasBlackJack = true
-                gameContainer.innerHTML += `<p>Congratulations! You've got Blackjack!</p>`
-                okayBtnEl.innerHTML = '<button>Start New Game</button>'
+                gameContainer.innerHTML += `
+                <p>
+                Congratulations! You've got Blackjack!
+                <br>
+                You won ${((betAmount * 1.5)-betAmount).toFixed(2)}
+                </p>
+                `
+                okayBtnEl.innerHTML = '<button>Continue playing</button>'
                 newCardBtnEl.innerHTML = ""
+                betAmount *= 1.5
+                betAmount = betAmount.toFixed(2)
+
         }
         }
 })
